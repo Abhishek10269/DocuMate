@@ -41,12 +41,13 @@ const features = [
 
 export default function Home() {
   return (
-    <main className="flex-1 overflow-x-scroll p-2 lg:p-5 bg-gradient-to-bl from-white to-indigo-600">
+    <main className="flex-1 overflow-x-scroll font-serif p-2 lg:p-5 bg-gradient-to-bl from-white to-indigo-600">
       <div className="bg-white py-24 sm:py-32 rounded-md drop-shadow-xl">
         <div className="flex flex-col justify-center items-center mx-auto max-w-7xl px-6 lg:px-8">
+        <h1 className="text-5xl text-black  font-bold font-serif">DocuMate</h1>
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-indigo-600 text-base font-semibold leading-7">Your Interactive Document Companion</h2>
-            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+            <h2 className="text-indigo-600 text-base font-semibold leading-7 mt-2">Your Interactive Document Companion</h2>
+            <p className="mt-2 text-4xl font-bold font-serif tracking-tight text-gray-900 sm:text-6xl">
               Transform Your PDFs into Interactive Conversations
             </p>
             <p className="mt-4">Introducing <span className="text-indigo-600 font-semibold">chat with PDF</span></p>
