@@ -7,7 +7,7 @@ import { FilePlus2 } from 'lucide-react';
 function Header() {
   return (
 <div className='flex justify-between bg-white shadow-sm p-5 border-b'>
-    <Link href="/dashboard" className='text-black-900 text-2xl font-bold mx-4'>DocuMate</Link>
+    <Link href="/dashboard" className='text-black-900 text-2xl font-bold'>DocuMate</Link>
     <SignedIn>
     <div className='flex items-center space-x-2'>
         <Button asChild variant="link" className=' flex '>
