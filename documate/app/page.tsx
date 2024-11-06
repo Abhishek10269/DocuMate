@@ -44,7 +44,7 @@ export default function Home() {
     <main className="flex-1 overflow-x-scroll p-2 lg:p-5 bg-gradient-to-bl from-white to-indigo-600">
       <div className="bg-white py-24 sm:py-32 rounded-md drop-shadow-xl">
         <div className="flex flex-col justify-center items-center mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center sm:text-center">
+          <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-indigo-600 text-base font-semibold leading-7">Your Interactive Document Companion</h2>
             <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-6xl">
               Transform Your PDFs into Interactive Conversations

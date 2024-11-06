@@ -10,9 +10,9 @@ function Header() {
     <Link href="/dashboard" className='text-black-900 text-2xl font-bold'>DocuMate</Link>
     <SignedIn>
     <div className='flex items-center space-x-2'>
-        <Button asChild variant="link" className=' flex '>
+        {/* <Button asChild variant="link" className='lg:hidden'>
             <Link href="/dashboard/upgrade">Pricing</Link>
-             </Button>
+             </Button> */}
 
              <Button asChild variant="outline" >
                 <Link href="/dashboard">My Document</Link>
