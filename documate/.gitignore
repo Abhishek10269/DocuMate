@@ -37,4 +37,5 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+key_service.json
 next-env.d.ts
