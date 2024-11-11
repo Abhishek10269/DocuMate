@@ -1,0 +1,21 @@
+{
+  "Notes": [
+    {
+      "note": "This is a note for my project.",
+      "created_at": "2024-11-11T17:12:56.647Z",
+      "id": "1f49046f-5bcd-4bab-839d-329af2b28c37"
+    },
+    {
+      "note": "going to make upload page",
+      "created_at": "2024-11-11T17:15:49.481Z",
+      "id": "1477e08e-0c5b-45b3-8783-d3bdf3b18a65"
+    }
+  ],
+  "Tasks": [
+    {
+      "task": "i have to complete the page today",
+      "created_at": "2024-11-11T17:16:51.944Z",
+      "id": "40536b66-2884-46ba-a0b7-8d23d02db24b"
+    }
+  ]
+}
