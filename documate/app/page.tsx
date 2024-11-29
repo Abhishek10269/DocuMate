@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { FaGlobeAsia, FaEye, FaRocket } from "react-icons/fa";
-import { BsFillLightningChargeFill, BsStars } from "react-icons/bs";
+import { BsFillLightningChargeFill } from "react-icons/bs"; // Removed BsStars import
 import { TbMessageChatbotFilled } from "react-icons/tb";
 
 const features = [
@@ -52,7 +52,6 @@ const features = [
 ];
 
 export default function Home() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -114,9 +113,7 @@ export default function Home() {
               {["Upload", "Chat", "Learn"].map((step, index) => (
                 <div
                   key={step}
-                  className="relative group bg-gray-800/50 backdrop-blur-lg rounded-xl p-8 hover:scale-105 transition-all duration-300"
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
+                  className="relative group bg-gray-800/50 backdrop-blur-lg rounded-xl p-8"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="relative">
@@ -141,7 +138,7 @@ export default function Home() {
               Powerful Features
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {features.map((feature, index) => (
+              {features.map((feature) => (
                 <div
                   key={feature.name}
                   className="group relative bg-gray-800/50 backdrop-blur-lg rounded-xl p-8 hover:scale-105 transition-all duration-300"

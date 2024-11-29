@@ -6,7 +6,7 @@ import useUpload from '@/hooks/useUpload';
 import { useRouter } from 'next/navigation';
 
 function FileUploader() {
-  const { progress, status, fileId, handleUpload } = useUpload();
+  const { progress, fileId, handleUpload } = useUpload();
   const router = useRouter();
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function FileUploader() {
         await handleUpload(file);
       }
     },
-    []
+    [handleUpload]
   );
 
   const { getRootProps, getInputProps, isDragActive, isDragAccept, isFocused } = useDropzone({
