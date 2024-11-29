@@ -5,7 +5,7 @@ import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 
 function FileUploader() {
-  const {progres,status,fileId,handleUpload} = useUpload();
+ // const {progres,status,fileId,handleUpload} = useUpload();
 
   const onDrop = useCallback( async (acceptedFiles: File[]) => {
     // Do something with file
@@ -13,7 +13,7 @@ function FileUploader() {
     const file = acceptedFiles[0];
 if(file)
 {
-  await handleUpload(file);
+ // await handleUpload(file);
 }
 else{
   //do nothing

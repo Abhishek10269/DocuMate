@@ -1,6 +1,8 @@
 "use client";
 
 import { useUser } from '@clerk/nextjs';
+import { storage } from '@/firebase';
+import {ref,uploadBytesResumable} from "firebase/storage";
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { v4 as uuidv4} from "uuid";
@@ -23,10 +25,10 @@ function useUpload() {
     const {user} = useUser();
     const router = useRouter();
 
-    const handleUpload = async (file: File) =>{
+    const handleUpload = async (file: File) => {
         if(!file || !user) return;
     
-        // TODO : FREE/PRO limitation
+        // TODO : FREE/PRO limitation...
     
         const fileIdToUploadTo = uuidv4();
     
@@ -34,8 +36,10 @@ function useUpload() {
             storage,
             `users/${user.id}/files/${fileIdToUploadTo}`
         );
-    }
+
+        const uploadTask = uploadBytesResumable(storageRef,file);
+    };
 
 }
 
-export default useUpload
+export default useUpload;

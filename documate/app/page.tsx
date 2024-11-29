@@ -1,89 +1,169 @@
-import Image from "next/image";
+"use client"
+
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-
-import { FaGlobeAsia, FaEye } from 'react-icons/fa';
-import { BsFillLightningChargeFill } from "react-icons/bs";
+import { FaGlobeAsia, FaEye, FaRocket } from 'react-icons/fa';
+import { BsFillLightningChargeFill, BsStars } from "react-icons/bs";
 import { TbMessageChatbotFilled } from "react-icons/tb";
 
 const features = [
   {
     name: "Global Access",
-    description: "Keep all your PDF files securely stored and easily accessible anytime, anywhere.",
+    description: "Access your PDFs from anywhere in the world, with secure cloud storage and instant retrieval.",
     icon: FaGlobeAsia,
+    color: "from-blue-500 to-cyan-400"
   },
   {
     name: "Lightning Fast",
-    description: "Experience lightning-fast answers to your queries, ensuring you get the information you need instantly.",
+    description: "Get instant answers powered by cutting-edge AI technology.",
     icon: BsFillLightningChargeFill,
+    color: "from-yellow-400 to-orange-500"
   },
   {
-    name: "Intelligent Chatbot",
-    description: "Our intelligent chatbot remembers previous interactions, providing a seamless and personalized experience.",
+    name: "AI Assistant",
+    description: "Your personal document expert that learns and adapts to your needs.",
     icon: TbMessageChatbotFilled,
+    color: "from-purple-500 to-pink-500"
   },
   {
-    name: "Interactive Viewer",
-    description: "Engage with your PDFs like never before using our intuitive and interactive viewer.",
+    name: "Smart Viewer",
+    description: "Navigate documents with our intuitive interface and smart highlights.",
     icon: FaEye,
-  },
-  {
-    name: "Global Access",
-    description: "Keep all your PDF files securely stored and easily accessible anytime, anywhere.",
-    icon: FaGlobeAsia,
-  },
-  {
-    name: "Lightning Fast",
-    description: "Experience lightning-fast answers to your queries, ensuring you get the information you need instantly.",
-    icon: BsFillLightningChargeFill,
+    color: "from-green-400 to-emerald-600"
   }
 ];
 
+// Pre-generate positions for stars
+const starPositions = [...Array(20)].map(() => ({
+  left: `${(Math.random() * 100).toFixed(2)}%`,
+  top: `${(Math.random() * 100).toFixed(2)}%`,
+  size: Math.floor(Math.random() * 20 + 10),
+  delay: `${(Math.random() * 5).toFixed(2)}s`
+}));
+
 export default function Home() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null; // or a loading state
+  }
+
   return (
-    <main className="flex-1 overflow-x-scroll font-serif p-2 lg:p-5 bg-gradient-to-bl from-white to-indigo-600">
-      <div className="bg-white py-24 sm:py-32 rounded-md drop-shadow-xl">
-        <div className="flex flex-col justify-center items-center mx-auto max-w-7xl px-6 lg:px-8">
-        <h1 className="text-5xl text-black  font-bold font-serif">DocuMate</h1>
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-indigo-600 text-base font-semibold leading-7 mt-2">Your Interactive Document Companion</h2>
-            <p className="mt-2 text-4xl font-bold font-serif tracking-tight text-gray-900 sm:text-6xl">
-              Transform Your PDFs into Interactive Conversations
-            </p>
-            <p className="mt-4">Introducing <span className="text-indigo-600 font-semibold">chat with PDF</span></p>
-            <p className="mt-5">Upload your document, and our chatbot will answer questions, summarize content, and answer all your Qs. Ideal for everyone. <span className="text-indigo-600 font-semibold">chat with PDF</span> turns static documents into <span className="text-black-600 font-semibold">dynamic conversations</span>, enhancing productivity 10x effortlessly.
-            </p>
-          </div>
-          <Button asChild className="mt-10">
-            <Link href="/dashboard">Get Started</Link>
-          </Button>
+    <main className="min-h-screen bg-gray-900 text-white overflow-hidden ">
+      <div className="relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 opacity-50" />
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent_50%)]" />
         </div>
-        <div className="relative overflow-hidden pt-6">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <Image
-              alt="App screenshot"
-              src="/assets/ss.jpeg"
-              width={2432}
-              height={1442}
-              className="mb-[-0%] rounded-xl shadow-2xl ring-1 ring-gray-900/10"
-            />
-            <div aria-hidden="true" className="relative">
-              <div className="absolute bottom-0 -inset-x-32 bg-gradient-to-t from-white/95 pt-[5%]" />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+          <div className="text-center space-y-8">
+            {/* Floating elements animation with pre-generated positions */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              {starPositions.map((pos, i) => (
+                <div
+                  key={i}
+                  className="absolute animate-float"
+                  style={{
+                    left: pos.left,
+                    top: pos.top,
+                    animationDelay: pos.delay,
+                    opacity: 0.1
+                  }}
+                >
+                  <BsStars className="text-white text-opacity-20" size={pos.size} />
+                </div>
+              ))}
+            </div>
+
+            {/* Rest of the component remains the same */}
+            <h1 className="text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600 animate-fade-in-up">
+              DocuMate
+            </h1>
+            
+            <p className="text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto animate-fade-in-up delay-100">
+              Transform your static PDFs into intelligent conversations with our 
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600"> AI-powered </span>
+              document companion
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12 animate-fade-in-up delay-200">
+              <Button 
+                asChild
+                className="group relative px-8 py-6 text-xl bg-gradient-to-r from-purple-600 to-pink-600 rounded-full hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-purple-500/50"
+              >
+                <Link href="/dashboard" className="flex items-center gap-2">
+                  Get Started Free
+                  <FaRocket className="group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </Button>
+              
+              <Button 
+                variant="outline"
+                className="px-8 py-6 text-xl bg-transparent border-2 border-purple-500/30 text-purple-300 rounded-full hover:bg-purple-500/10 transition-all duration-300"
+              >
+                Watch Demo
+              </Button>
             </div>
           </div>
-        </div>
-        <div className="mx-auto mt-16 max-w-7xl px-6 sm:mt-20 md:mt-24 lg:px-8">
-          <dl className="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-10 text-base leading-7 text-gray-600 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">
-            {features.map((feature, index) => (
-              <div key={index} className="relative pl-9 bg-gray-100 rounded-lg p-6 shadow-md">
-                <dt className="font-semibold text-gray-900 flex items-center mb-3">
-                  {feature.icon && <feature.icon aria-hidden="true" className="mr-3 h-6 w-6 text-indigo-600" />}
-                  <span className="text-lg font-bold text-indigo-800">{feature.name}</span>
-                </dt>
-                <dd className="text-gray-700">{feature.description}</dd>
-              </div>
-            ))}
-          </dl>
+
+          {/* How it Works Section */}
+          <div className="mt-32 text-center">
+            <h2 className="text-4xl font-bold mb-16 animate-fade-in-up delay-300">How It Works</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {['Upload', 'Chat', 'Learn'].map((step, index) => (
+                <div 
+                  key={step}
+                  className="relative group bg-gray-800/50 backdrop-blur-lg rounded-xl p-8 hover:scale-105 transition-all duration-300"
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="relative">
+                    <div className="text-5xl font-bold text-purple-400 mb-4">{index + 1}</div>
+                    <h3 className="text-2xl font-semibold mb-2">{step}</h3>
+                    <p className="text-gray-400">
+                      {index === 0 && "Upload any PDF document to our secure platform"}
+                      {index === 1 && "Ask questions in natural language about your document"}
+                      {index === 2 && "Get instant, intelligent responses from our AI"}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Features Grid */}
+          <div className="mt-32">
+            <h2 className="text-4xl font-bold text-center mb-16 animate-fade-in-up delay-400">
+              Powerful Features
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              {features.map((feature, index) => (
+                <div
+                  key={feature.name}
+                  className="group relative bg-gray-800/50 backdrop-blur-lg rounded-xl p-8 hover:scale-105 transition-all duration-300"
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} rounded-xl opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                  <div className="relative flex items-start gap-4">
+                    <div className={`p-3 rounded-lg bg-gradient-to-br ${feature.color}`}>
+                      <feature.icon className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold mb-2">{feature.name}</h3>
+                      <p className="text-gray-400">{feature.description}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </main>
