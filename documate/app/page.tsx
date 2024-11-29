@@ -31,7 +31,19 @@ const features = [
     description: "Navigate documents with our intuitive interface and smart highlights.",
     icon: FaEye,
     color: "from-green-400 to-emerald-600"
-  }
+  },
+  {
+    name: "Global Access1",
+    description: "Access your PDFs from anywhere in the world, with secure cloud storage and instant retrieval.",
+    icon: FaGlobeAsia,
+    color: "from-blue-500 to-cyan-400"
+  },
+  {
+    name: "Lightning Fast1",
+    description: "Get instant answers powered by cutting-edge AI technology.",
+    icon: BsFillLightningChargeFill,
+    color: "from-yellow-400 to-orange-500"
+  },
 ];
 
 // Pre-generate positions for stars
@@ -55,7 +67,7 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-900 text-white overflow-hidden ">
+    <main className="min-h-screen bg-gray-900 text-white overflow-hidden">
       <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 opacity-50" />
         <div className="absolute inset-0">
@@ -87,7 +99,7 @@ export default function Home() {
               DocuMate
             </h1>
             
-            <p className="text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto animate-fade-in-up delay-100">
+            <p className="text-2xl sm:text-4xl text-gray-300 max-w-3xl mx-auto animate-fade-in-up delay-100">
               Transform your static PDFs into intelligent conversations with our 
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600"> AI-powered </span>
               document companion

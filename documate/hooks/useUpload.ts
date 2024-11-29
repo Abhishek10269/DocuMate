@@ -1,11 +1,13 @@
 "use client";
 
 import { useUser } from '@clerk/nextjs';
-import { storage } from '@/firebase';
-import {ref,uploadBytesResumable} from "firebase/storage";
-import { useRouter } from 'next/router';
+import { db, storage } from '@/firebase';
+import {getDownloadURL, ref,uploadBytesResumable} from "firebase/storage";
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { v4 as uuidv4} from "uuid";
+import { error } from 'console';
+import {doc, setDoc } from 'firebase/firestore';
 
 export enum StatusText {
     UPLOADING = "Uploading file...",
@@ -18,7 +20,7 @@ export type Status = StatusText[keyof StatusText];
 
 function useUpload() {
 
-    const [status,setstatus]= useState<Status | null>(null);
+    const [status,setStatus]= useState<Status | null>(null);
     const [progress,setProgress]= useState<number | null>(null);
     const [fileId,setFiledId]= useState<string | null>(null);
 
@@ -38,7 +40,41 @@ function useUpload() {
         );
 
         const uploadTask = uploadBytesResumable(storageRef,file);
+        
+        uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+                const percent = Math.round(
+                    (snapshot.bytesTransferred / snapshot.totalBytes)*100
+                );
+                setStatus (StatusText.UPLOADING);
+                setProgress(percent);
+            },
+            (error) => {
+                console.error("error uploading file", error);
+            }, async() => {
+                setStatus(StatusText.UPLOADED);
+
+                const downloadUrl = await getDownloadURL(uploadTask.snapshot.ref);
+                setStatus(StatusText.SAVING);
+
+                await setDoc(doc(db, "users",user.id,'files',fileIdToUploadTo), {
+                   name : file.name,
+                   size: file.size,
+                   downloadUrl: downloadUrl,
+                   ref: uploadTask.snapshot.ref.fullPath,
+                   createdAt: new Date(), 
+                })
+
+                setStatus(StatusText.GENERATING);
+
+                //generate AI embeddings...
+
+                setFiledId(fileIdToUploadTo);
+            }
+        );
     };
+    return {progress,status,fileId,handleUpload};
 
 }
 
