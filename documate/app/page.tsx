@@ -72,7 +72,7 @@ export default function Home() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
           <div className="text-center space-y-8">
-            <h1 className="text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600 animate-fade-in-up">
+            <h1 className="text-6xl sm:text-7xl    font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600 animate-fade-in-up">
               DocuMate
             </h1>
 
@@ -94,19 +94,12 @@ export default function Home() {
                   <FaRocket className="group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-
-              <Button
-                variant="outline"
-                className="px-8 py-6 text-xl bg-transparent border-2 border-purple-500/30 text-purple-300 rounded-full hover:bg-purple-500/10 transition-all duration-300"
-              >
-                Watch Demo
-              </Button>
             </div>
           </div>
 
           {/* How it Works Section */}
-          <div className="mt-32 text-center">
-            <h2 className="text-4xl font-bold mb-16 animate-fade-in-up delay-300">
+          <div className="mt-20 text-center">
+            <h2 className="text-5xl font-bold mb-16 animate-fade-in-up delay-300">
               How It Works
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -134,7 +127,7 @@ export default function Home() {
 
           {/* Features Grid */}
           <div className="mt-32">
-            <h2 className="text-4xl font-bold text-center mb-16 animate-fade-in-up delay-400">
+            <h2 className="text-5xl font-bold text-center mb-16 animate-fade-in-up delay-400">
               Powerful Features
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
